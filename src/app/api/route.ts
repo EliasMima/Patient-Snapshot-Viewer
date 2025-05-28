@@ -23,6 +23,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         headers: { Authorization: `Bearer ${accessToken.token}` },
       }),
     ]);
+    console.log('Fetching patient:', id);
 
     return NextResponse.json({
       patient: patient.data,

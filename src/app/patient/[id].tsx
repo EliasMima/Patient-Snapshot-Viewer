@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import axios from 'axios';
