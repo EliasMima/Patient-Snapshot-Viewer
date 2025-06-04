@@ -2,9 +2,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getGoogleAuthClient } from '@/lib/googleClient';
 import axios from 'axios';
+import { useSearchParams } from 'next/navigation';
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params;
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
+  if (!id) {
+    return NextResponse.json({ error: 'Patient ID is required' }, { status: 400 });
+  }
 
   try {
     const client = getGoogleAuthClient();
